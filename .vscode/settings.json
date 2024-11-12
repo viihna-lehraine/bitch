@@ -1,0 +1,18 @@
+{
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.formatOnSave": true,
+    "C_Cpp.clang_format_style": "file",
+    "C_Cpp.clang_format_fallbackStyle": "none",
+    "files.associations": {
+		"*.js": "javascript",
+		"*.ts": "typescript",
+		"*.jsx": "javascriptreact",
+		"*.tsx": "typescriptreact",
+		"*.tcc": "cpp",
+		".clang-format": "yaml",
+		"stdexcept": "cpp",
+		"iostream": "cpp"
+	},
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": false
+}

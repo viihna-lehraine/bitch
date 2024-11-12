@@ -1,0 +1,19 @@
+Cards:
+
+    Attributes: rank, suit, and special behaviors (e.g., dynamic Aces, wildcard Jokers).
+    Methods: getPlayValue() (dynamic value based on context).
+
+Deck:
+
+    A collection of cards, including Jokers.
+    Methods for shuffling, dealing, and drawing cards.
+
+Player:
+
+    Attributes: hand, nakedCards, blindCards, and currentTurn.
+    Methods for playing, bluffing, and interacting with game rules.
+
+Game State:
+
+    Tracks the middle stack, discard pile, deck, players, and turn order.
+    Implements rules (e.g., handling 7 chains, 8 skips, 10 clears).

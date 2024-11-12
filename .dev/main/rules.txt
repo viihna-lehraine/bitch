@@ -1,0 +1,112 @@
+A. SETUP
+
+
+1. Bitch can be played with multiple decks at a time
+
+##########################################################################
+
+2. Dealer is chosen at game start. Typically via some crude, hilarious manner made up on the spot. Not sure how to code...that...lmao. Anyway, they will only deal the initial cards.
+
+##########################################################################
+
+3. At game start, dealer hands each player 4 cards which cannot be viewed by any player at any time (known as "blind cards"). They are laid face down for each player.
+
+##########################################################################
+
+4, Next, dealer will give each player 9 more cards.
+
+	4a. A full hand is 5 cards. A player can have more than 5 cards throughout the game for several reasons. If they have >=5 cards in their hand, they are NOT to draw any cards automatically on their turn. If they have >5 cards at their turn's start, they must draw exactly enough cards such that they now have a hand of 5.
+
+	4b. The dealer will then draw one more card from the deck and place it in the middle of the table, face up.
+
+	4c. Each player must now choose the 9 cards they were dealt, and lay 4 of them (naked cards) face up on top of their blind cards. The whole table can view the naked cards at any time.
+
+	4d. When adding naked cards to their blind cards, a player may stack multiples of a given card value (multiple 2's on the same blind card, etc. Note that the Joker can act as any value). Since they will then have a hand of <5 cards, they must continue to draw until their hand is full.
+
+	4e. Once all players have satisfied these requirements, it is traditional to play some stupid minigame of vulgar nature to determine who goes first. For now, we'll either implement RNG to pick a first player or the dealer can pick.
+
+##########################################################################
+
+5. Once all requirements in step 4 are satisfied, the game begins.
+
+##########################################################################
+
+B. VALUES
+
+1. Each player must generally play a card of equal or greater value than the one that is laying face up on the top of the stack in the middle. However, there are several exceptions.
+
+2. When making their play, a player can use multiple cards with the same value (i.e. multiple 2's can be played in one action)
+
+
+1. 2 can be played on any other card. When played, it effectively has the highest possible value. When a player must make a play on a 2 in the mid-stack it has a value of 2. So any card can be played ON a 2 as well.
+
+2. 3 has a value of 3. No special functions.
+
+3. 4 has a value of 4. No special functions.
+
+4. 5 has a value of 5. No special functions.
+
+5. 6 has a value of 6. No special functions. 
+
+6. 7 is special. When played, a 7 acts as normal, having a value of 7. However, the next player must either
+	
+	6a. Draw 2 cards or
+
+	6b. Play an Ace, 2, 10, or another 7.
+
+	6c. If the player plays their own 7, the next player will have to draw FOUR cards if they cannot satisfy the conditons of 6b. This effect can stack. The player who is acting on a fielded 7 must draw a number of cards equal to 2 * the number of consecutive 7's in the field stack if they cannot (or will not) play their own valid card.
+
+	6d. As mentioned, a player does not HAVE to play a valid card on a 7 if they have one or more valid cards in hand. This is true for ANY action or turn. Unless it is mathematically impossible (given the number of cards in their hand, card on the field, etc.), they may elect to bluff and pick up the field stack.
+
+	6e. However, any other player may attempt to call their bluff. The CPU will read the player's hand and make the determination.
+	
+		6e-1. If the original player did NOT bluff, the player calling the bluff must now show their hand to the table AND pick up 8 cards.
+
+		6e-2. If the bluff was called correctly, however, the bluffer is only forced to pick up 4 cards. They DO NOT have to show their hand. This incentivizes lying, while making bluff calling risky (but highly rewarding!)
+
+	7. If a player has had to pick up cards as a result of a 7 in play, their turn is now over.
+
+	8. The NEXT player treats the 7 (or 7's) as invisible (they act as if the 7's do not exist, and play on the card immediately beneath).
+
+7. 8's are a skip card. One 8 played skips the next player. Two 8's skip 2 players. And so on. This can be used to give the acting player an extra turn if they have enough 8's in hand.
+
+	7a. 8's have the same invisibility property as 7's for the next acting player.
+
+8. 9's have a play value of 9, but the next player must play a card equal to or LESS than 9.
+
+	8a. 9's do NOT have the invisibility property shared by 7's and 8's.
+
+9. 10's can be played on any card EXCEPT a 9.
+
+	9a. Playing a 10 clears the middle stack. The stack is sent to a discard pile, and is removed from play until game over. Playing a 10 gives the acting player an extra turn.
+
+10. Jacks, Queens, and Kings act as normal. (like 3's, 4's, and 5's, with Jacks < Queens < Kings)
+
+11. Aces are dynamic. The acting player can choose to play an Ace as having a forward play value of 2 (anything can be played on the Ace) or the value of a King + 1 (such that no card can be played on the Ace except a 2, 10, or another Ace (which must be played as a High Ace)).
+
+12. Jokers are wildcards. They can act as any card that would be a valid play on the card in at the top of the middle stack.
+
+13. If a player cannot make a valid play (or successfully bluffs), their turn is lost and they must pick up the entire middle stack, adding it to their hand.
+
+	13a. The next player then pulls a card from the top of the deck and flips it to a visible state in the middle, thus beginning a new middle stack.
+
+	13b. If there is no remaining stack at this time, the acting player has free reign to play any card they wish.
+
+##########################################################################
+
+C. ENDGAME
+
+
+1. Once there is no deck to draw from and a player has no remaining cards in their hand, they must begin playing their naked cards. Remember that all players can view their naked cards, so they will likely try to stall this player any way they can.
+
+	1a. If a player at this stage cannot make a valid play, they draw the stack as usual but also pick one of their naked cards and add it to their hand.
+
+2. Once the naked cards have all been played, the only remaining steps between the player and victory are their blind cards.
+
+	2a. On the player's turn, their only choice is to play a blind card, well, blindly. They are to have no idea what card they are playing.
+
+	2b. Similarly to playing naked cards, if a player's blind card is not a valid play, they add the blind card to their hand as well as the middle stack.
+
+	2c. Once the first player has made a valid play with their 4th and final blind card, they win.
+
+	2d. Play will continue until all but 1 player has successfully played their last blind card.

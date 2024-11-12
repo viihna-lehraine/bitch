@@ -1,0 +1,17 @@
+# File: .clang-format
+
+BasedOnStyle: Google
+IndentWidth: 4
+UseTab: Always
+TabWidth: 4
+ColumnLimit: 0
+
+BraceWrapping:
+  AfterClass: true
+  AfterControlStatement: true
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: false
+  BeforeCatch: true
+  BeforeElse: true
+

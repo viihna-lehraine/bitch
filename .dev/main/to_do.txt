@@ -1,0 +1,39 @@
+1. Need to add prettier + linter
+	A. should enforce required bracket spaces
+
+
+######################################################################
+
+2. .vscode/ directory, with...
+
+	A. c_cpp_propertoes.json
+
+	B. launch.json
+
+	C. settings.json
+
+	D. tasks.json
+
+######################################################################
+
+3. Create startup.cpp. Displays basic info including...
+
+	A. displays basic info including...
+
+		1. program name
+		
+		2. version
+		
+		3. release date
+		
+		4. web page
+		
+		5. dev contact
+		
+		6. license
+		
+		7. privacy policy
+		
+		8. TOS 
+
+######################################################################
